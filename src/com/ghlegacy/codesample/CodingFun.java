@@ -44,6 +44,11 @@ public class CodingFun
     			
       } //end of main method
 
+    
+    /* Each element in the array has a value of either 0 or 1. start and end is outside of array and have values of 0.
+     * In each iterations if an element is surrounded by same values then the status of that element changes 
+     * from 1 to 0 or vice versa. 
+     * */
     public static List<Integer> stateChange(int[] states, int days)
     {
     	int start, end;
