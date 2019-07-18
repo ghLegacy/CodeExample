@@ -1,9 +1,5 @@
 package com.ghlegacy.codesample;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Stack;
 import java.util.*;
 
 
@@ -25,24 +21,67 @@ public class CodingFun
     
     public static void main(String[] args) {
             
-	    checkLambdaExp();
-	     
-	    leftSidedPyramid(5);
-	     
-	    int aa = divide(4,0);
-	             
-	    checkStaticAccess();     
-	            
-	    System.out.println("small:" + findSmallestValueInArray(new int[size]));
-	            
-	    funWithHash();
-	    	
-		System.out.println(balancedParenthensies("{([])}"));
-		System.out.println(balancedParenthensies("{(a},b)"));
-		System.out.println(balancedParenthensies("{)(a,b}"));
-             
+//	    checkLambdaExp();
+//	     
+//	    leftSidedPyramid(5);
+//	     
+//	    int aa = divide(4,0);
+//	             
+//	    checkStaticAccess();     
+//	            
+//	    System.out.println("small:" + findSmallestValueInArray(new int[size]));
+//	            
+//	    funWithHash();
+//	    	
+//		System.out.println(balancedParenthensies("{([])}"));
+//		System.out.println(balancedParenthensies("{(a},b)"));
+//		System.out.println(balancedParenthensies("{)(a,b}"));
+    	int[] st = new int[] {0,1,1,0,0,0,1,1};
+    	int day = 2;
+    	List<Integer> res = stateChange(st, day);
+//    	for(Integer a : res)
+//    		System.out.print(a);
+    			
       } //end of main method
 
+    public static List<Integer> stateChange(int[] states, int days)
+    {
+    	int start, end;
+    	start = end = 0;
+    	List<Integer> result = null;
+    	int[] currst = states;
+    	int[] nextst = new int[8];
+    	
+	    for(int j=0; j< days; j++)
+	    {
+	    	result = new ArrayList<Integer>();
+		    	
+	    	for(int i=0; i<=7; i++)
+	    	{
+	    		if(	(i==0 && currst[i+1] != start) || 
+	    			(i>0 && 
+	    					(
+	    							(i==7 && currst[i-1] != end) || 
+	    							(i<7 && currst[i-1] != currst[i+1])
+	    					) ) )
+	    		{
+	    			if(currst[i] == 0) { nextst[i] = 1; }
+	    			else { nextst[i] = 0; }
+	    			
+	    			result.add(nextst[i]);
+	    		}
+	    		else { result.add(currst[i]); }
+	    		
+	    		System.out.print(result.get(i));
+	    	}
+	    	
+	    	System.out.println("");
+	    	currst = Arrays.copyOf(nextst,nextst.length);
+	    	
+	    }
+    	
+    	return result;
+    }
     
     private static void funWithHash() 
     {
@@ -87,9 +126,6 @@ public class CodingFun
 		}
 	}
     
-    /**
-     * 
-     */
     private static void checkStaticAccess()
     {
         CodingFun obj1 = new CodingFun();
