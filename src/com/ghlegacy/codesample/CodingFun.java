@@ -36,56 +36,54 @@ public class CodingFun
 //		System.out.println(balancedParenthensies("{([])}"));
 //		System.out.println(balancedParenthensies("{(a},b)"));
 //		System.out.println(balancedParenthensies("{)(a,b}"));
+    	
     	int[] st = new int[] {0,1,1,0,0,0,1,1};
     	int day = 2;
-    	List<Integer> res = stateChange(st, day);
-//    	for(Integer a : res)
-//    		System.out.print(a);
-    			
-      } //end of main method
+    	stateChange(st, day);
+    	
+    } //end of main method
 
     
     /* Each element in the array has a value of either 0 or 1. start and end is outside of array and have values of 0.
      * In each iterations if an element is surrounded by same values then the status of that element changes 
-     * from 1 to 0 or vice versa. 
+     * from 1 to 0 or vice versa.
+     *  Input: {0,1,1,0,0,0,1,1} for j = 2
+     *  Output:
+     *  01101011 J:0
+	 *  01110111 J:1
      * */
-    public static List<Integer> stateChange(int[] states, int days)
+    public static void stateChange(int[] states, int days)
     {
     	int start, end;
     	start = end = 0;
-    	List<Integer> result = null;
-    	int[] currst = states;
-    	int[] nextst = new int[8];
+    	/* You have to use two arrays to maintain two states, otherwise the results will be wrong.
+    	 */
     	
+    	int[] currst = Arrays.copyOf(states, states.length);
+    	    	
 	    for(int j=0; j< days; j++)
 	    {
-	    	result = new ArrayList<Integer>();
-		    	
+	    	int[] nextst = new int[8];
 	    	for(int i=0; i<=7; i++)
 	    	{
 	    		if(	(i==0 && currst[i+1] != start) || 
-	    			(i>0 && 
-	    					(
-	    							(i==7 && currst[i-1] != end) || 
-	    							(i<7 && currst[i-1] != currst[i+1])
-	    					) ) )
+	    			(i>0 && ((i==7 && currst[i-1] != end) || (i<7 && currst[i-1] != currst[i+1])))
+	    		  )
 	    		{
-	    			if(currst[i] == 0) { nextst[i] = 1; }
-	    			else { nextst[i] = 0; }
-	    			
-	    			result.add(nextst[i]);
+	    			nextst[i] = currst[i];
 	    		}
-	    		else { result.add(currst[i]); }
-	    		
-	    		System.out.print(result.get(i));
+	    		else
+	    		{
+	    			nextst[i] = (currst[i] == 0) ? 1 : 0;
+	    		}
+	    		System.out.print(nextst[i]);
 	    	}
 	    	
-	    	System.out.println("");
+	    	System.out.println(" J:"+ j);
+	    	currst = new int[8];
 	    	currst = Arrays.copyOf(nextst,nextst.length);
-	    	
 	    }
     	
-    	return result;
     }
     
     private static void funWithHash() 
