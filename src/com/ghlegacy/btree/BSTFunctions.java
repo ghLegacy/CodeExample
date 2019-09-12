@@ -1,4 +1,4 @@
-package com.ghlegacy.codesample;
+package com.ghlegacy.btree;
 
 /**
  * Binary Search Tree operations
