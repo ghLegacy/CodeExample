@@ -2,10 +2,10 @@ package com.ghlegacy.travers;
 
 import java.util.*;
 
-class DepthFirstSearch
+class DFSRecursive
 {
-	// Function to perform DFS Traversal
-	public static void DepthFirstSearch(Graph graph, int v, boolean[] discovered)
+	// Function to perform DFS Traversal Recursively
+	public static void depthFirstSearch(Graph graph, int v, boolean[] discovered)
 	{
 		// mark current node as discovered
 		discovered[v] = true;
@@ -18,7 +18,7 @@ class DepthFirstSearch
 		{
 			// u is not discovered
 			if (!discovered[u]) {
-				DepthFirstSearch(graph, u, discovered);
+				depthFirstSearch(graph, u, discovered);
 			}
 		}
 	}
@@ -48,7 +48,7 @@ class DepthFirstSearch
 		// cover all unconnected components of graph
 		for (int i = 0; i < N; i++) {
 			if (!discovered[i]) {
-				DepthFirstSearch(graph, i, discovered);
+				depthFirstSearch(graph, i, discovered);
 			}
 		}
 	}

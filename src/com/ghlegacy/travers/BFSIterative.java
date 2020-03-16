@@ -5,7 +5,7 @@ import java.util.*;
 class BFSIterative
 {
 	// Perform BFS on graph starting from vertex v
-	public static void BFSIterative(Graph graph, int v, boolean[] discovered)
+	public static void BFSIterativeTraverse(Graph graph, int v, boolean[] discovered)
 	{
 		// create a queue used to do BFS
 		Queue<Integer> q = new ArrayDeque<>();
@@ -60,7 +60,7 @@ class BFSIterative
 		for (int i = 0; i < N; i++) {
 			if (discovered[i] == false) {
 				// start BFS traversal from vertex i
-				BFSIterative(graph, i, discovered);
+				BFSIterativeTraverse(graph, i, discovered);
 			}
 		}
 	}
