@@ -1,8 +1,5 @@
 package com.ghlegacy.codesample;
 
-import java.io.*;
-import java.util.*;
-
 public class RunLengthEncode 
 {
 
@@ -23,8 +20,13 @@ public class RunLengthEncode
 		{
 			return "There is no string to process.";
 		}
-    
-		StringBuffer dest = new StringBuffer();
+		/* StringBuffer is thread-safe and synchronized, so it can cause slow 
+		 * performance if thread safety is not required.
+		 * 
+		 * StringBuffer & StringBuilder classes are mutable unlike String class.
+		 * */
+//		StringBuffer dest = new StringBuffer();
+		StringBuilder dest = new StringBuilder();
 	    for (int i = 0; i < s.length(); i++) {
 	        int runLength = 1;
 	        while (i + 1 < s.length()
