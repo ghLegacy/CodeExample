@@ -2,7 +2,7 @@ package com.ghlegacy.travers;
 
 import java.util.*;
 
-class DepthFirstSearch
+class DFSRecursive
 {
 	// Function to perform DFS Traversal
 	public static void DepthFirstSearch(Graph graph, int v, boolean[] discovered)

@@ -1,4 +1,4 @@
-package com.ghlegacy.btree;
+package com.ghlegacy.bstree;
 
 //Recursive Java program for level order traversal of Binary Tree 
 
@@ -50,7 +50,8 @@ class BTreeHeight
 	       /* use the larger one */
 	       if (lheight > rheight) 
 	           return(lheight+1); 
-	       else return(rheight+1);  
+	       else 
+	    	   return(rheight+1);  
 	   } 
 	} 
 	

@@ -1,4 +1,4 @@
-package com.ghlegacy.btree;
+package com.ghlegacy.bstree;
 
 /**
  * Binary Search Tree operations
