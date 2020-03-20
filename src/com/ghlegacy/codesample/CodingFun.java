@@ -1,9 +1,5 @@
 package com.ghlegacy.codesample;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Stack;
 import java.util.*;
 
 
@@ -25,24 +21,70 @@ public class CodingFun
     
     public static void main(String[] args) {
             
-	    checkLambdaExp();
-	     
-	    leftSidedPyramid(5);
-	     
-	    int aa = divide(4,0);
-	             
-	    checkStaticAccess();     
-	            
-	    System.out.println("small:" + findSmallestValueInArray(new int[size]));
-	            
-	    funWithHash();
-	    	
-		System.out.println(balancedParenthensies("{([])}"));
-		System.out.println(balancedParenthensies("{(a},b)"));
-		System.out.println(balancedParenthensies("{)(a,b}"));
-             
-      } //end of main method
+//	    checkLambdaExp();
+//	     
+//	    leftSidedPyramid(5);
+//	     
+//	    int aa = divide(4,0);
+//	             
+//	    checkStaticAccess();     
+//	            
+//	    System.out.println("small:" + findSmallestValueInArray(new int[size]));
+//	            
+//	    funWithHash();
+//	    	
+//		System.out.println(balancedParenthensies("{([])}"));
+//		System.out.println(balancedParenthensies("{(a},b)"));
+//		System.out.println(balancedParenthensies("{)(a,b}"));
+    	
+    	int[] st = new int[] {0,1,1,0,0,0,1,1};
+    	int day = 2;
+    	stateChange(st, day);
+    	
+    } //end of main method
 
+    
+    /* Each element in the array has a value of either 0 or 1. start and end is outside of array and have values of 0.
+     * In each iterations if an element is surrounded by same values then the status of that element changes 
+     * from 1 to 0 or vice versa.
+     *  Input: {0,1,1,0,0,0,1,1} for j = 2
+     *  Output:
+     *  01101011 J:0
+	 *  01110111 J:1
+     * */
+    public static void stateChange(int[] states, int days)
+    {
+    	int start, end;
+    	start = end = 0;
+    	/* You have to use two arrays to maintain two states, otherwise the results will be wrong.
+    	 */
+    	
+    	int[] currst = Arrays.copyOf(states, states.length);
+    	    	
+	    for(int j=0; j< days; j++)
+	    {
+	    	int[] nextst = new int[8];
+	    	for(int i=0; i<=7; i++)
+	    	{
+	    		if(	(i==0 && currst[i+1] != start) || 
+	    			(i>0 && ((i==7 && currst[i-1] != end) || (i<7 && currst[i-1] != currst[i+1])))
+	    		  )
+	    		{
+	    			nextst[i] = currst[i];
+	    		}
+	    		else
+	    		{
+	    			nextst[i] = (currst[i] == 0) ? 1 : 0;
+	    		}
+	    		System.out.print(nextst[i]);
+	    	}
+	    	
+	    	System.out.println(" J:"+ j);
+	    	currst = new int[8];
+	    	currst = Arrays.copyOf(nextst,nextst.length);
+	    }
+    	
+    }
     
     private static void funWithHash() 
     {
@@ -87,9 +129,6 @@ public class CodingFun
 		}
 	}
     
-    /**
-     * 
-     */
     private static void checkStaticAccess()
     {
         CodingFun obj1 = new CodingFun();
