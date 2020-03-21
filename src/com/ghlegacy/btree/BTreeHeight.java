@@ -31,7 +31,10 @@ class BTreeHeight
 	   int h = height(root); 
 	   int i; 
 	   for (i=1; i<=h; i++) 
-	       printGivenLevel(root, i); 
+	   { 
+	       printGivenLevel(root, i);
+	   	   System.out.println("");
+	   }
 	} 
 	
 	/* Compute the "height" of a tree -- the number of 
