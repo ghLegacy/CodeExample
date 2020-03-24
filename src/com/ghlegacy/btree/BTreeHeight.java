@@ -29,8 +29,9 @@ class BTreeHeight
 	void printLevelOrder() 
 	{ 
 	   int h = height(root); 
-	   for (int i=1; i<=h; i++)
-	   {
+	   int i; 
+	   for (i=1; i<=h; i++) 
+	   { 
 	       printGivenLevel(root, i);
 	   	   System.out.println("");
 	   }
@@ -39,7 +40,7 @@ class BTreeHeight
 	/* Compute the "height" of a tree -- the number of 
 	nodes along the longest path from the root node 
 	down to the farthest leaf node.*/
-	private int height(Node root) 
+	int height(Node root) 
 	{ 
 	   if (root == null) 
 	      return 0; 
@@ -57,20 +58,17 @@ class BTreeHeight
 	} 
 	
 	/* Print nodes at the given level */
-	private void printGivenLevel (Node root ,int level) 
+	void printGivenLevel (Node root ,int level) 
 	{ 
 	   if (root == null) 
 	       return; 
-	   
 	   if (level == 1) 
 	       System.out.print(root.data + " "); 
 	   else if (level > 1) 
 	   { 
 	       printGivenLevel(root.left, level-1); 
 	       printGivenLevel(root.right, level-1); 
-	   }
-	   
-	   
+	   } 
 	} 
 	 
 	/* Driver program to test above functions */
@@ -82,12 +80,9 @@ class BTreeHeight
 	  tree.root.right= new Node(3); 
 	  tree.root.left.left= new Node(4); 
 	  tree.root.left.right= new Node(5); 
-	  tree.root.right.left= new Node(6); 
-	  tree.root.right.right= new Node(7); 
 	    
 	  System.out.println("Level order traversal of binary tree is "); 
-	  tree.printLevelOrder();
-	  //tree.printGivenLevel(tree.root, 3);
+	  tree.printLevelOrder(); 
 	} 
 } 
 
